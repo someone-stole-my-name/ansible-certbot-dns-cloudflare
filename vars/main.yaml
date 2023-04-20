@@ -1,3 +1,4 @@
 ---
+certbot_create_method: standalone
 certbot_create_standalone_stop_services: []
 certbot_create_command: "certbot certonly --noninteractive --dns-cloudflare --agree-tos --email {{ cert_item.email | default(certbot_admin_email) }} -d {{ cert_item.domains | join(',') }}"
