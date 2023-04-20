@@ -1,0 +1,17 @@
+galaxy_info:
+  role_name: certbot_dns_cloudflare
+  description: Generate certificates using DNS challenge and Cloudflare
+  namespace: someone_stole_my_name
+  author: Christian Segundo
+  license: BSD-3-Clause
+  min_ansible_version: "2.7"
+  platforms:
+    - name: Debian
+  galaxy_tags:
+    - certbot
+    - dns
+    - letsencrypt
+    - ssl
+    - tls
+dependencies:
+  - src: geerlingguy.certbot

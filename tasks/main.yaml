@@ -1,0 +1,39 @@
+---
+- name: Install certbot-dns-cloudflare
+  apt:
+    name: python3-certbot-dns-cloudflare
+
+- name: Create letsencrypt directory
+  file:
+    path: /etc/letsencrypt
+    state: directory
+    owner: root
+    group: root
+    mode: "0710"
+
+- name: Create letsencrypt configuration
+  copy:
+    dest: /etc/letsencrypt/cli.ini
+    owner: root
+    group: root
+    mode: "0700"
+    content: |
+      # Let's Encrypt site-wide configuration
+      dns-cloudflare-credentials = /etc/letsencrypt/dns-cloudflare.ini
+      # Use the ACME v2 staging URI for testing things
+      # server = https://acme-staging-v02.api.letsencrypt.org/directory
+      # Production ACME v2 API endpoint
+      server = https://acme-v02.api.letsencrypt.org/directory
+
+- name: Create dns-cloudflare configuration
+  copy:
+    dest: /etc/letsencrypt/dns-cloudflare.ini
+    owner: root
+    group: root
+    mode: "0700"
+    content: |
+      dns_cloudflare_api_token = {{ certbot_cloudflare_api_token }}
+
+- name: Create certificates
+  import_role:
+    name: geerlingguy.certbot
