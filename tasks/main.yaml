@@ -37,10 +37,3 @@
 - name: Create certificates
   import_role:
     name: geerlingguy.certbot
-  vars:
-    certbot_auto_renew_user: "{{certbot_auto_renew_user}}"
-    certbot_create_if_missing: "{{certbot_create_if_missing}}"
-    certbot_install_method: "{{certbot_install_method}}"
-    certbot_create_method: "{{certbot_create_method}}"
-    certbot_create_standalone_stop_services: "{{certbot_create_standalone_stop_services}}"
-    certbot_create_command: "{{certbot_create_command}}"
